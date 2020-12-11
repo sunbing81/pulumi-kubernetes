@@ -323,7 +323,7 @@ jobs:
           - nodejs
           - python
           - dotnet
-        #          - go // temporarily removed
+          - go
         nodeversion:
           - 13.x
         pythonversion:
