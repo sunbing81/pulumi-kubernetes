@@ -943,6 +943,12 @@ def _parse_yaml_object(
         return [identifier.apply(
             lambda x: (f"v1/EndpointsList:{x}",
                        EndpointsList(f"{x}", opts, **obj)))]
+    if gvk == "v1/EphemeralContainers":
+        # Import locally to avoid name collisions.
+        from pulumi_kubernetes.core.v1 import EphemeralContainers
+        return [identifier.apply(
+            lambda x: (f"v1/EphemeralContainers:{x}",
+                       EphemeralContainers(f"{x}", opts, **obj)))]
     if gvk == "v1/Event":
         # Import locally to avoid name collisions.
         from pulumi_kubernetes.core.v1 import Event
@@ -1621,6 +1627,18 @@ def _parse_yaml_object(
         return [identifier.apply(
             lambda x: (f"storage.k8s.io/v1/VolumeAttachmentList:{x}",
                        VolumeAttachmentList(f"{x}", opts, **obj)))]
+    if gvk == "storage.k8s.io/v1alpha1/CSIStorageCapacity":
+        # Import locally to avoid name collisions.
+        from pulumi_kubernetes.storage.v1alpha1 import CSIStorageCapacity
+        return [identifier.apply(
+            lambda x: (f"storage.k8s.io/v1alpha1/CSIStorageCapacity:{x}",
+                       CSIStorageCapacity(f"{x}", opts, **obj)))]
+    if gvk == "storage.k8s.io/v1alpha1/CSIStorageCapacityList":
+        # Import locally to avoid name collisions.
+        from pulumi_kubernetes.storage.v1alpha1 import CSIStorageCapacityList
+        return [identifier.apply(
+            lambda x: (f"storage.k8s.io/v1alpha1/CSIStorageCapacityList:{x}",
+                       CSIStorageCapacityList(f"{x}", opts, **obj)))]
     if gvk == "storage.k8s.io/v1alpha1/VolumeAttachment":
         # Import locally to avoid name collisions.
         from pulumi_kubernetes.storage.v1alpha1 import VolumeAttachment

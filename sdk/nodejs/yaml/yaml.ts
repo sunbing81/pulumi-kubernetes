@@ -199,6 +199,8 @@ export abstract class CollectionComponentResource extends pulumi.ComponentResour
     public getResource(groupVersionKind: "v1/Endpoints", namespace: string, name: string): pulumi.Output<k8s.core.v1.Endpoints>;
     public getResource(groupVersionKind: "v1/EndpointsList", name: string): pulumi.Output<k8s.core.v1.EndpointsList>;
     public getResource(groupVersionKind: "v1/EndpointsList", namespace: string, name: string): pulumi.Output<k8s.core.v1.EndpointsList>;
+    public getResource(groupVersionKind: "v1/EphemeralContainers", name: string): pulumi.Output<k8s.core.v1.EphemeralContainers>;
+    public getResource(groupVersionKind: "v1/EphemeralContainers", namespace: string, name: string): pulumi.Output<k8s.core.v1.EphemeralContainers>;
     public getResource(groupVersionKind: "v1/Event", name: string): pulumi.Output<k8s.core.v1.Event>;
     public getResource(groupVersionKind: "v1/Event", namespace: string, name: string): pulumi.Output<k8s.core.v1.Event>;
     public getResource(groupVersionKind: "v1/EventList", name: string): pulumi.Output<k8s.core.v1.EventList>;
@@ -425,6 +427,10 @@ export abstract class CollectionComponentResource extends pulumi.ComponentResour
     public getResource(groupVersionKind: "storage.k8s.io/v1/VolumeAttachment", namespace: string, name: string): pulumi.Output<k8s.storage.v1.VolumeAttachment>;
     public getResource(groupVersionKind: "storage.k8s.io/v1/VolumeAttachmentList", name: string): pulumi.Output<k8s.storage.v1.VolumeAttachmentList>;
     public getResource(groupVersionKind: "storage.k8s.io/v1/VolumeAttachmentList", namespace: string, name: string): pulumi.Output<k8s.storage.v1.VolumeAttachmentList>;
+    public getResource(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", name: string): pulumi.Output<k8s.storage.v1alpha1.CSIStorageCapacity>;
+    public getResource(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", namespace: string, name: string): pulumi.Output<k8s.storage.v1alpha1.CSIStorageCapacity>;
+    public getResource(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", name: string): pulumi.Output<k8s.storage.v1alpha1.CSIStorageCapacityList>;
+    public getResource(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", namespace: string, name: string): pulumi.Output<k8s.storage.v1alpha1.CSIStorageCapacityList>;
     public getResource(groupVersionKind: "storage.k8s.io/v1alpha1/VolumeAttachment", name: string): pulumi.Output<k8s.storage.v1alpha1.VolumeAttachment>;
     public getResource(groupVersionKind: "storage.k8s.io/v1alpha1/VolumeAttachment", namespace: string, name: string): pulumi.Output<k8s.storage.v1alpha1.VolumeAttachment>;
     public getResource(groupVersionKind: "storage.k8s.io/v1alpha1/VolumeAttachmentList", name: string): pulumi.Output<k8s.storage.v1alpha1.VolumeAttachmentList>;
@@ -1171,6 +1177,14 @@ export abstract class CollectionComponentResource extends pulumi.ComponentResour
     public getResourceProperty(groupVersionKind: "v1/EndpointsList", namespace: string, name: string, property: "kind"): pulumi.Output<"EndpointsList">;
     public getResourceProperty(groupVersionKind: "v1/EndpointsList", name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ListMeta>;
     public getResourceProperty(groupVersionKind: "v1/EndpointsList", namespace: string, name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ListMeta>;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", name: string, property: "apiVersion"): pulumi.Output<"v1">;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", namespace: string, name: string, property: "apiVersion"): pulumi.Output<"v1">;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", name: string, property: "ephemeralContainers"): pulumi.Output<outputs.core.v1.EphemeralContainer[]>;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", namespace: string, name: string, property: "ephemeralContainers"): pulumi.Output<outputs.core.v1.EphemeralContainer[]>;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", name: string, property: "kind"): pulumi.Output<"EphemeralContainers">;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", namespace: string, name: string, property: "kind"): pulumi.Output<"EphemeralContainers">;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ObjectMeta>;
+    public getResourceProperty(groupVersionKind: "v1/EphemeralContainers", namespace: string, name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ObjectMeta>;
     public getResourceProperty(groupVersionKind: "v1/Event", name: string, property: "action"): pulumi.Output<string>;
     public getResourceProperty(groupVersionKind: "v1/Event", namespace: string, name: string, property: "action"): pulumi.Output<string>;
     public getResourceProperty(groupVersionKind: "v1/Event", name: string, property: "apiVersion"): pulumi.Output<"v1">;
@@ -2271,6 +2285,26 @@ export abstract class CollectionComponentResource extends pulumi.ComponentResour
     public getResourceProperty(groupVersionKind: "storage.k8s.io/v1/VolumeAttachmentList", namespace: string, name: string, property: "kind"): pulumi.Output<"VolumeAttachmentList">;
     public getResourceProperty(groupVersionKind: "storage.k8s.io/v1/VolumeAttachmentList", name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ListMeta>;
     public getResourceProperty(groupVersionKind: "storage.k8s.io/v1/VolumeAttachmentList", namespace: string, name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ListMeta>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", name: string, property: "apiVersion"): pulumi.Output<"storage.k8s.io/v1alpha1">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", namespace: string, name: string, property: "apiVersion"): pulumi.Output<"storage.k8s.io/v1alpha1">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", name: string, property: "capacity"): pulumi.Output<string>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", namespace: string, name: string, property: "capacity"): pulumi.Output<string>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", name: string, property: "kind"): pulumi.Output<"CSIStorageCapacity">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", namespace: string, name: string, property: "kind"): pulumi.Output<"CSIStorageCapacity">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ObjectMeta>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", namespace: string, name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ObjectMeta>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", name: string, property: "nodeTopology"): pulumi.Output<outputs.meta.v1.LabelSelector>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", namespace: string, name: string, property: "nodeTopology"): pulumi.Output<outputs.meta.v1.LabelSelector>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", name: string, property: "storageClassName"): pulumi.Output<string>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacity", namespace: string, name: string, property: "storageClassName"): pulumi.Output<string>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", name: string, property: "apiVersion"): pulumi.Output<"storage.k8s.io/v1alpha1">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", namespace: string, name: string, property: "apiVersion"): pulumi.Output<"storage.k8s.io/v1alpha1">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", name: string, property: "items"): pulumi.Output<outputs.storage.v1alpha1.CSIStorageCapacity[]>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", namespace: string, name: string, property: "items"): pulumi.Output<outputs.storage.v1alpha1.CSIStorageCapacity[]>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", name: string, property: "kind"): pulumi.Output<"CSIStorageCapacityList">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", namespace: string, name: string, property: "kind"): pulumi.Output<"CSIStorageCapacityList">;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ListMeta>;
+    public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/CSIStorageCapacityList", namespace: string, name: string, property: "metadata"): pulumi.Output<outputs.meta.v1.ListMeta>;
     public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/VolumeAttachment", name: string, property: "apiVersion"): pulumi.Output<"storage.k8s.io/v1alpha1">;
     public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/VolumeAttachment", namespace: string, name: string, property: "apiVersion"): pulumi.Output<"storage.k8s.io/v1alpha1">;
     public getResourceProperty(groupVersionKind: "storage.k8s.io/v1alpha1/VolumeAttachment", name: string, property: "kind"): pulumi.Output<"VolumeAttachment">;
@@ -2884,6 +2918,7 @@ export interface ConfigOpts {
         || (gvk === "storage.k8s.io/v1/CSINodeList")
         || (gvk === "storage.k8s.io/v1/StorageClassList")
         || (gvk === "storage.k8s.io/v1/VolumeAttachmentList")
+        || (gvk === "storage.k8s.io/v1alpha1/CSIStorageCapacityList")
         || (gvk === "storage.k8s.io/v1alpha1/VolumeAttachmentList")
         || (gvk === "storage.k8s.io/v1beta1/CSIDriverList")
         || (gvk === "storage.k8s.io/v1beta1/CSINodeList")
@@ -3141,6 +3176,11 @@ export interface ConfigOpts {
             return [id.apply(id => ({
                 name: `v1/Endpoints::${id}`,
                 resource: new k8s.core.v1.Endpoints(id, obj, opts),
+            }))];
+        case "v1/EphemeralContainers":
+            return [id.apply(id => ({
+                name: `v1/EphemeralContainers::${id}`,
+                resource: new k8s.core.v1.EphemeralContainers(id, obj, opts),
             }))];
         case "v1/Event":
             return [id.apply(id => ({
@@ -3426,6 +3466,11 @@ export interface ConfigOpts {
             return [id.apply(id => ({
                 name: `storage.k8s.io/v1/VolumeAttachment::${id}`,
                 resource: new k8s.storage.v1.VolumeAttachment(id, obj, opts),
+            }))];
+        case "storage.k8s.io/v1alpha1/CSIStorageCapacity":
+            return [id.apply(id => ({
+                name: `storage.k8s.io/v1alpha1/CSIStorageCapacity::${id}`,
+                resource: new k8s.storage.v1alpha1.CSIStorageCapacity(id, obj, opts),
             }))];
         case "storage.k8s.io/v1alpha1/VolumeAttachment":
             return [id.apply(id => ({

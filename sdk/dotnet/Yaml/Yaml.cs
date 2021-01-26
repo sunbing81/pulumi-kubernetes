@@ -136,6 +136,7 @@ namespace Pulumi.Kubernetes.Yaml
                 type == typeof(Core.V1.ConfigMapList) ? "v1/ConfigMapList" :
                 type == typeof(Core.V1.Endpoints) ? "v1/Endpoints" :
                 type == typeof(Core.V1.EndpointsList) ? "v1/EndpointsList" :
+                type == typeof(Core.V1.EphemeralContainers) ? "v1/EphemeralContainers" :
                 type == typeof(Core.V1.Event) ? "v1/Event" :
                 type == typeof(Core.V1.EventList) ? "v1/EventList" :
                 type == typeof(Core.V1.LimitRange) ? "v1/LimitRange" :
@@ -249,6 +250,8 @@ namespace Pulumi.Kubernetes.Yaml
                 type == typeof(Storage.V1.StorageClassList) ? "storage.k8s.io/v1/StorageClassList" :
                 type == typeof(Storage.V1.VolumeAttachment) ? "storage.k8s.io/v1/VolumeAttachment" :
                 type == typeof(Storage.V1.VolumeAttachmentList) ? "storage.k8s.io/v1/VolumeAttachmentList" :
+                type == typeof(Storage.V1Alpha1.CSIStorageCapacity) ? "storage.k8s.io/v1alpha1/CSIStorageCapacity" :
+                type == typeof(Storage.V1Alpha1.CSIStorageCapacityList) ? "storage.k8s.io/v1alpha1/CSIStorageCapacityList" :
                 type == typeof(Storage.V1Alpha1.VolumeAttachment) ? "storage.k8s.io/v1alpha1/VolumeAttachment" :
                 type == typeof(Storage.V1Alpha1.VolumeAttachmentList) ? "storage.k8s.io/v1alpha1/VolumeAttachmentList" :
                 type == typeof(Storage.V1Beta1.CSIDriver) ? "storage.k8s.io/v1beta1/CSIDriver" :
@@ -520,6 +523,7 @@ namespace Pulumi.Kubernetes.Yaml
                 || gvk == "storage.k8s.io/v1/CSINodeList"
                 || gvk == "storage.k8s.io/v1/StorageClassList"
                 || gvk == "storage.k8s.io/v1/VolumeAttachmentList"
+                || gvk == "storage.k8s.io/v1alpha1/CSIStorageCapacityList"
                 || gvk == "storage.k8s.io/v1alpha1/VolumeAttachmentList"
                 || gvk == "storage.k8s.io/v1beta1/CSIDriverList"
                 || gvk == "storage.k8s.io/v1beta1/CSINodeList"
@@ -827,6 +831,12 @@ namespace Pulumi.Kubernetes.Yaml
                         {
                             id.Apply(id => ($"v1/Endpoints::{id}",
                                 new Core.V1.Endpoints(id, obj!, opts) as KubernetesResource))
+                        };
+                    case "v1/EphemeralContainers":
+                        return new[]
+                        {
+                            id.Apply(id => ($"v1/EphemeralContainers::{id}",
+                                new Core.V1.EphemeralContainers(id, obj!, opts) as KubernetesResource))
                         };
                     case "v1/Event":
                         return new[]
@@ -1169,6 +1179,12 @@ namespace Pulumi.Kubernetes.Yaml
                         {
                             id.Apply(id => ($"storage.k8s.io/v1/VolumeAttachment::{id}",
                                 new Storage.V1.VolumeAttachment(id, obj!, opts) as KubernetesResource))
+                        };
+                    case "storage.k8s.io/v1alpha1/CSIStorageCapacity":
+                        return new[]
+                        {
+                            id.Apply(id => ($"storage.k8s.io/v1alpha1/CSIStorageCapacity::{id}",
+                                new Storage.V1Alpha1.CSIStorageCapacity(id, obj!, opts) as KubernetesResource))
                         };
                     case "storage.k8s.io/v1alpha1/VolumeAttachment":
                         return new[]

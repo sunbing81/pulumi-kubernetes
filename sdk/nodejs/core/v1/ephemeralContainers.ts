@@ -6,33 +6,33 @@ import { input as inputs, output as outputs, enums } from "../../types";
 import * as utilities from "../../utilities";
 
 /**
- * LimitRangeList is a list of LimitRange items.
+ * A list of ephemeral containers used with the Pod ephemeralcontainers subresource.
  */
-export class LimitRangeList extends pulumi.CustomResource {
+export class EphemeralContainers extends pulumi.CustomResource {
     /**
-     * Get an existing LimitRangeList resource's state with the given name, ID, and optional extra
+     * Get an existing EphemeralContainers resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): LimitRangeList {
-        return new LimitRangeList(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): EphemeralContainers {
+        return new EphemeralContainers(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'kubernetes:core/v1:LimitRangeList';
+    public static readonly __pulumiType = 'kubernetes:core/v1:EphemeralContainers';
 
     /**
-     * Returns true if the given object is an instance of LimitRangeList.  This is designed to work even
+     * Returns true if the given object is an instance of EphemeralContainers.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is LimitRangeList {
+    public static isInstance(obj: any): obj is EphemeralContainers {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === LimitRangeList.__pulumiType;
+        return obj['__pulumiType'] === EphemeralContainers.__pulumiType;
     }
 
     /**
@@ -40,38 +40,35 @@ export class LimitRangeList extends pulumi.CustomResource {
      */
     public readonly apiVersion!: pulumi.Output<"v1">;
     /**
-     * Items is a list of LimitRange objects. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+     * A list of ephemeral containers associated with this pod. New ephemeral containers may be appended to this list, but existing ephemeral containers may not be removed or modified.
      */
-    public readonly items!: pulumi.Output<outputs.core.v1.LimitRange[]>;
+    public readonly ephemeralContainers!: pulumi.Output<outputs.core.v1.EphemeralContainer[]>;
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    public readonly kind!: pulumi.Output<"LimitRangeList">;
-    /**
-     * Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-     */
-    public readonly metadata!: pulumi.Output<outputs.meta.v1.ListMeta>;
+    public readonly kind!: pulumi.Output<"EphemeralContainers">;
+    public readonly metadata!: pulumi.Output<outputs.meta.v1.ObjectMeta>;
 
     /**
-     * Create a LimitRangeList resource with the given unique name, arguments, and options.
+     * Create a EphemeralContainers resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: LimitRangeListArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: EphemeralContainersArgs, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (!(opts && opts.id)) {
-            if ((!args || args.items === undefined) && !(opts && opts.urn)) {
-                throw new Error("Missing required property 'items'");
+            if ((!args || args.ephemeralContainers === undefined) && !(opts && opts.urn)) {
+                throw new Error("Missing required property 'ephemeralContainers'");
             }
             inputs["apiVersion"] = "v1";
-            inputs["items"] = args ? args.items : undefined;
-            inputs["kind"] = "LimitRangeList";
+            inputs["ephemeralContainers"] = args ? args.ephemeralContainers : undefined;
+            inputs["kind"] = "EphemeralContainers";
             inputs["metadata"] = args ? args.metadata : undefined;
         } else {
             inputs["apiVersion"] = undefined /*out*/;
-            inputs["items"] = undefined /*out*/;
+            inputs["ephemeralContainers"] = undefined /*out*/;
             inputs["kind"] = undefined /*out*/;
             inputs["metadata"] = undefined /*out*/;
         }
@@ -82,28 +79,25 @@ export class LimitRangeList extends pulumi.CustomResource {
         if (!opts.version) {
             opts.version = utilities.getVersion();
         }
-        super(LimitRangeList.__pulumiType, name, inputs, opts);
+        super(EphemeralContainers.__pulumiType, name, inputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a LimitRangeList resource.
+ * The set of arguments for constructing a EphemeralContainers resource.
  */
-export interface LimitRangeListArgs {
+export interface EphemeralContainersArgs {
     /**
      * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
      */
     readonly apiVersion?: pulumi.Input<"v1">;
     /**
-     * Items is a list of LimitRange objects. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+     * A list of ephemeral containers associated with this pod. New ephemeral containers may be appended to this list, but existing ephemeral containers may not be removed or modified.
      */
-    readonly items: pulumi.Input<pulumi.Input<inputs.core.v1.LimitRange>[]>;
+    readonly ephemeralContainers: pulumi.Input<pulumi.Input<inputs.core.v1.EphemeralContainer>[]>;
     /**
      * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
-    readonly kind?: pulumi.Input<"LimitRangeList">;
-    /**
-     * Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-     */
-    readonly metadata?: pulumi.Input<inputs.meta.v1.ListMeta>;
+    readonly kind?: pulumi.Input<"EphemeralContainers">;
+    readonly metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
 }

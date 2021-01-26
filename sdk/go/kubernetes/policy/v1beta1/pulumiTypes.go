@@ -1390,7 +1390,7 @@ func (o PodDisruptionBudgetStatusPtrOutput) ObservedGeneration() pulumi.IntPtrOu
 	}).(pulumi.IntPtrOutput)
 }
 
-// PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container.
+// PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container. Deprecated in 1.21.
 type PodSecurityPolicyType struct {
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	ApiVersion *string `pulumi:"apiVersion"`
@@ -1413,7 +1413,7 @@ type PodSecurityPolicyTypeInput interface {
 	ToPodSecurityPolicyTypeOutputWithContext(context.Context) PodSecurityPolicyTypeOutput
 }
 
-// PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container.
+// PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container. Deprecated in 1.21.
 type PodSecurityPolicyTypeArgs struct {
 	// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 	ApiVersion pulumi.StringPtrInput `pulumi:"apiVersion"`
@@ -1462,7 +1462,7 @@ func (i PodSecurityPolicyTypeArray) ToPodSecurityPolicyTypeArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(PodSecurityPolicyTypeArrayOutput)
 }
 
-// PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container.
+// PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container. Deprecated in 1.21.
 type PodSecurityPolicyTypeOutput struct{ *pulumi.OutputState }
 
 func (PodSecurityPolicyTypeOutput) ElementType() reflect.Type {

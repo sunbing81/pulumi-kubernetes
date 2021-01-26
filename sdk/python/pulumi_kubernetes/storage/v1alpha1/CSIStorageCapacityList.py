@@ -8,33 +8,32 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union
 from ... import _utilities, _tables
 from . import outputs
-from ... import core as _core
 from ... import meta as _meta
 from ._inputs import *
 
-__all__ = ['PodSecurityPolicy']
+__all__ = ['CSIStorageCapacityList']
 
 
-class PodSecurityPolicy(pulumi.CustomResource):
+class CSIStorageCapacityList(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_version: Optional[pulumi.Input[str]] = None,
+                 items: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CSIStorageCapacityArgs']]]]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
-                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta.v1.ObjectMetaArgs']]] = None,
-                 spec: Optional[pulumi.Input[pulumi.InputType['PodSecurityPolicySpecArgs']]] = None,
+                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta.v1.ListMetaArgs']]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container. Deprecated in 1.21.
+        CSIStorageCapacityList is a collection of CSIStorageCapacity objects.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CSIStorageCapacityArgs']]]] items: Items is the list of CSIStorageCapacity objects.
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-        :param pulumi.Input[pulumi.InputType['_meta.v1.ObjectMetaArgs']] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param pulumi.Input[pulumi.InputType['PodSecurityPolicySpecArgs']] spec: spec defines the policy enforced.
+        :param pulumi.Input[pulumi.InputType['_meta.v1.ListMetaArgs']] metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -53,14 +52,14 @@ class PodSecurityPolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['api_version'] = 'policy/v1beta1'
-            __props__['kind'] = 'PodSecurityPolicy'
+            __props__['api_version'] = 'storage.k8s.io/v1alpha1'
+            if items is None and not opts.urn:
+                raise TypeError("Missing required property 'items'")
+            __props__['items'] = items
+            __props__['kind'] = 'CSIStorageCapacityList'
             __props__['metadata'] = metadata
-            __props__['spec'] = spec
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="kubernetes:extensions/v1beta1:PodSecurityPolicy")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
-        super(PodSecurityPolicy, __self__).__init__(
-            'kubernetes:policy/v1beta1:PodSecurityPolicy',
+        super(CSIStorageCapacityList, __self__).__init__(
+            'kubernetes:storage.k8s.io/v1alpha1:CSIStorageCapacityList',
             resource_name,
             __props__,
             opts)
@@ -68,9 +67,9 @@ class PodSecurityPolicy(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'PodSecurityPolicy':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'CSIStorageCapacityList':
         """
-        Get an existing PodSecurityPolicy resource's state with the given name, id, and optional extra
+        Get an existing CSIStorageCapacityList resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -81,7 +80,7 @@ class PodSecurityPolicy(pulumi.CustomResource):
 
         __props__ = dict()
 
-        return PodSecurityPolicy(resource_name, opts=opts, __props__=__props__)
+        return CSIStorageCapacityList(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -93,6 +92,14 @@ class PodSecurityPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def items(self) -> pulumi.Output[Sequence['outputs.CSIStorageCapacity']]:
+        """
+        Items is the list of CSIStorageCapacity objects.
+        """
+        return pulumi.get(self, "items")
+
+    @property
+    @pulumi.getter
     def kind(self) -> pulumi.Output[Optional[str]]:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
@@ -101,19 +108,11 @@ class PodSecurityPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output[Optional['_meta.v1.outputs.ObjectMeta']]:
+    def metadata(self) -> pulumi.Output[Optional['_meta.v1.outputs.ListMeta']]:
         """
-        Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
         return pulumi.get(self, "metadata")
-
-    @property
-    @pulumi.getter
-    def spec(self) -> pulumi.Output[Optional['outputs.PodSecurityPolicySpec']]:
-        """
-        spec defines the policy enforced.
-        """
-        return pulumi.get(self, "spec")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

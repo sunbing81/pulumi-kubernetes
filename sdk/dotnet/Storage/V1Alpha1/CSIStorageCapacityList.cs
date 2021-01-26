@@ -7,13 +7,13 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Kubernetes.Core.V1
+namespace Pulumi.Kubernetes.Storage.V1Alpha1
 {
     /// <summary>
-    /// LimitRangeList is a list of LimitRange items.
+    /// CSIStorageCapacityList is a collection of CSIStorageCapacity objects.
     /// </summary>
-    [KubernetesResourceType("kubernetes:core/v1:LimitRangeList")]
-    public partial class LimitRangeList : KubernetesResource
+    [KubernetesResourceType("kubernetes:storage.k8s.io/v1alpha1:CSIStorageCapacityList")]
+    public partial class CSIStorageCapacityList : KubernetesResource
     {
         /// <summary>
         /// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -22,10 +22,10 @@ namespace Pulumi.Kubernetes.Core.V1
         public Output<string> ApiVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Items is a list of LimitRange objects. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+        /// Items is the list of CSIStorageCapacity objects.
         /// </summary>
         [Output("items")]
-        public Output<ImmutableArray<Pulumi.Kubernetes.Types.Outputs.Core.V1.LimitRange>> Items { get; private set; } = null!;
+        public Output<ImmutableArray<Pulumi.Kubernetes.Types.Outputs.Storage.V1Alpha1.CSIStorageCapacity>> Items { get; private set; } = null!;
 
         /// <summary>
         /// Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
@@ -34,38 +34,38 @@ namespace Pulumi.Kubernetes.Core.V1
         public Output<string> Kind { get; private set; } = null!;
 
         /// <summary>
-        /// Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        /// Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         /// </summary>
         [Output("metadata")]
         public Output<Pulumi.Kubernetes.Types.Outputs.Meta.V1.ListMeta> Metadata { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a LimitRangeList resource with the given unique name, arguments, and options.
+        /// Create a CSIStorageCapacityList resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public LimitRangeList(string name, Pulumi.Kubernetes.Types.Inputs.Core.V1.LimitRangeListArgs? args = null, CustomResourceOptions? options = null)
-            : base("kubernetes:core/v1:LimitRangeList", name, MakeArgs(args), MakeResourceOptions(options, ""))
+        public CSIStorageCapacityList(string name, Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1.CSIStorageCapacityListArgs? args = null, CustomResourceOptions? options = null)
+            : base("kubernetes:storage.k8s.io/v1alpha1:CSIStorageCapacityList", name, MakeArgs(args), MakeResourceOptions(options, ""))
         {
         }
-        internal LimitRangeList(string name, ImmutableDictionary<string, object?> dictionary, CustomResourceOptions? options = null)
-            : base("kubernetes:core/v1:LimitRangeList", name, new DictionaryResourceArgs(dictionary), MakeResourceOptions(options, ""))
-        {
-        }
-
-        private LimitRangeList(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("kubernetes:core/v1:LimitRangeList", name, null, MakeResourceOptions(options, id))
+        internal CSIStorageCapacityList(string name, ImmutableDictionary<string, object?> dictionary, CustomResourceOptions? options = null)
+            : base("kubernetes:storage.k8s.io/v1alpha1:CSIStorageCapacityList", name, new DictionaryResourceArgs(dictionary), MakeResourceOptions(options, ""))
         {
         }
 
-        private static Pulumi.Kubernetes.Types.Inputs.Core.V1.LimitRangeListArgs? MakeArgs(Pulumi.Kubernetes.Types.Inputs.Core.V1.LimitRangeListArgs? args)
+        private CSIStorageCapacityList(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("kubernetes:storage.k8s.io/v1alpha1:CSIStorageCapacityList", name, null, MakeResourceOptions(options, id))
         {
-            args ??= new Pulumi.Kubernetes.Types.Inputs.Core.V1.LimitRangeListArgs();
-            args.ApiVersion = "v1";
-            args.Kind = "LimitRangeList";
+        }
+
+        private static Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1.CSIStorageCapacityListArgs? MakeArgs(Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1.CSIStorageCapacityListArgs? args)
+        {
+            args ??= new Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1.CSIStorageCapacityListArgs();
+            args.ApiVersion = "storage.k8s.io/v1alpha1";
+            args.Kind = "CSIStorageCapacityList";
             return args;
         }
 
@@ -81,23 +81,23 @@ namespace Pulumi.Kubernetes.Core.V1
             return merged;
         }
         /// <summary>
-        /// Get an existing LimitRangeList resource's state with the given name, ID, and optional extra
+        /// Get an existing CSIStorageCapacityList resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static LimitRangeList Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static CSIStorageCapacityList Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new LimitRangeList(name, id, options);
+            return new CSIStorageCapacityList(name, id, options);
         }
     }
 }
-namespace Pulumi.Kubernetes.Types.Inputs.Core.V1
+namespace Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1
 {
 
-    public class LimitRangeListArgs : Pulumi.ResourceArgs
+    public class CSIStorageCapacityListArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
@@ -106,14 +106,14 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core.V1
         public Input<string>? ApiVersion { get; set; }
 
         [Input("items", required: true)]
-        private InputList<Pulumi.Kubernetes.Types.Inputs.Core.V1.LimitRangeArgs>? _items;
+        private InputList<Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1.CSIStorageCapacityArgs>? _items;
 
         /// <summary>
-        /// Items is a list of LimitRange objects. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+        /// Items is the list of CSIStorageCapacity objects.
         /// </summary>
-        public InputList<Pulumi.Kubernetes.Types.Inputs.Core.V1.LimitRangeArgs> Items
+        public InputList<Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1.CSIStorageCapacityArgs> Items
         {
-            get => _items ?? (_items = new InputList<Pulumi.Kubernetes.Types.Inputs.Core.V1.LimitRangeArgs>());
+            get => _items ?? (_items = new InputList<Pulumi.Kubernetes.Types.Inputs.Storage.V1Alpha1.CSIStorageCapacityArgs>());
             set => _items = value;
         }
 
@@ -124,12 +124,12 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core.V1
         public Input<string>? Kind { get; set; }
 
         /// <summary>
-        /// Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        /// Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         /// </summary>
         [Input("metadata")]
         public Input<Pulumi.Kubernetes.Types.Inputs.Meta.V1.ListMetaArgs>? Metadata { get; set; }
 
-        public LimitRangeListArgs()
+        public CSIStorageCapacityListArgs()
         {
         }
     }
