@@ -817,23 +817,35 @@ class NetworkPolicyPort(dict):
     NetworkPolicyPort describes a port to allow traffic on
     """
     def __init__(__self__, *,
+                 end_port: Optional[int] = None,
                  port: Optional[Any] = None,
                  protocol: Optional[str] = None):
         """
         NetworkPolicyPort describes a port to allow traffic on
-        :param Union[int, str] port: The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
+        :param int end_port: If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. This feature is in Alpha state and should be enabled using the Feature Gate "NetworkPolicyEndPort".
+        :param Union[int, str] port: The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
         :param str protocol: The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
         """
+        if end_port is not None:
+            pulumi.set(__self__, "end_port", end_port)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
 
     @property
+    @pulumi.getter(name="endPort")
+    def end_port(self) -> Optional[int]:
+        """
+        If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. This feature is in Alpha state and should be enabled using the Feature Gate "NetworkPolicyEndPort".
+        """
+        return pulumi.get(self, "end_port")
+
+    @property
     @pulumi.getter
     def port(self) -> Optional[Any]:
         """
-        The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
+        The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
         """
         return pulumi.get(self, "port")
 

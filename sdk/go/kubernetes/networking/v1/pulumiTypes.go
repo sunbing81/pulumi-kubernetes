@@ -2495,7 +2495,9 @@ func (o NetworkPolicyPeerArrayOutput) Index(i pulumi.IntInput) NetworkPolicyPeer
 
 // NetworkPolicyPort describes a port to allow traffic on
 type NetworkPolicyPort struct {
-	// The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
+	// If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. This feature is in Alpha state and should be enabled using the Feature Gate "NetworkPolicyEndPort".
+	EndPort *int `pulumi:"endPort"`
+	// The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
 	Port interface{} `pulumi:"port"`
 	// The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
 	Protocol *string `pulumi:"protocol"`
@@ -2514,7 +2516,9 @@ type NetworkPolicyPortInput interface {
 
 // NetworkPolicyPort describes a port to allow traffic on
 type NetworkPolicyPortArgs struct {
-	// The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
+	// If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. This feature is in Alpha state and should be enabled using the Feature Gate "NetworkPolicyEndPort".
+	EndPort pulumi.IntPtrInput `pulumi:"endPort"`
+	// The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
 	Port pulumi.Input `pulumi:"port"`
 	// The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
@@ -2572,7 +2576,12 @@ func (o NetworkPolicyPortOutput) ToNetworkPolicyPortOutputWithContext(ctx contex
 	return o
 }
 
-// The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
+// If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. This feature is in Alpha state and should be enabled using the Feature Gate "NetworkPolicyEndPort".
+func (o NetworkPolicyPortOutput) EndPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NetworkPolicyPort) *int { return v.EndPort }).(pulumi.IntPtrOutput)
+}
+
+// The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
 func (o NetworkPolicyPortOutput) Port() pulumi.AnyOutput {
 	return o.ApplyT(func(v NetworkPolicyPort) interface{} { return v.Port }).(pulumi.AnyOutput)
 }
